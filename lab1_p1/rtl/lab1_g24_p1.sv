@@ -1,0 +1,11 @@
+/* Hazirlayanlar:
+* M.Cemal Eryigit
+* Burak Kamil Ciftci
+* ELM235 2021 Bahar Lab1 - Problem 1 
+*/
+module lab1_g24_p1 (
+input logic A, B, C,
+output logic Y
+);
+assign Y = A & B | A & ~C | ~B & C;
+endmodule
