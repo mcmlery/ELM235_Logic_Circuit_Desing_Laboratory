@@ -1,0 +1,51 @@
+
+module lab3_g24_p1(
+    input logic clk, reset, en, yon,
+    input logic [7:0]psc,
+    output logic tick,
+    logic [7:0]count
+);
+
+always_ff @ (posedge clk ,negedge reset)
+begin
+if(yon) //asagi sayici
+begin
+        //psc<=count;  
+        if(en)
+            begin
+            if(psc==0)
+                begin
+                    tick<=1;
+                end
+            else
+                begin
+                    count<=count-1'b1;
+                    tick<=0;
+                end
+    	     end    
+    else if(!reset)
+        begin
+            count <= psc;
+        end
+end    
+else if(!yon) //yukari sayici
+begin
+     if(en)
+         begin
+            if(count==psc)
+                begin
+                    tick<=1;
+                end
+            else
+                begin
+                    count<=count+1'b1;
+                    tick<=0;
+                end
+         end     
+        else if(!reset)
+            begin
+                count <= 8'b00000000;
+            end
+end
+end
+endmodule
